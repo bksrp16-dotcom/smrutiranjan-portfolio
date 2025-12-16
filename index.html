@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smrutiranjan Pradhan | Solution Architect</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --accent: #0b3c6d; /* Executive Blue */
+      --accent-light: #e6f0fa;
+      --shadow: 0 12px 30px rgba(2, 32, 71, 0.08);
+      --heading-font: 'Playfair Display', serif;
+      --body-font: 'Inter', sans-serif;
+    }
+
+    body.dark {
+      --bg: #0b1220;
+      --card: #121a2b;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #3b82f6;
+      --accent-light: #0f1f38;
+      --shadow: 0 12px 30px rgba(0,0,0,0.4);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--body-font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      transition: all .3s ease;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      padding: 14px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      margin: 0 14px;
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+    }
+
+    .logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .toggle {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    /* HERO */
+    header {
+      padding: 110px 20px 120px;
+      text-align: center;
+      background: linear-gradient(135deg, #0b3c6d, #0a2540);
+      color: #fff;
+      border-radius: 0 0 36px 36px;
+    }
+
+    header h1 {
+      font-family: var(--heading-font);
+      font-size: 3.2rem;
+      margin-bottom: 10px;
+    }
+
+    header h2 {
+      font-size: 1.4rem;
+      font-weight: 400;
+      opacity: 0.95;
+    }
+
+    header p {
+      max-width: 760px;
+      margin: 26px auto 0;
+      font-size: 1.15rem;
+      opacity: 0.95;
+    }
+
+    .cta {
+      margin-top: 36px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .cta a {
+      text-decoration: none;
+      padding: 14px 30px;
+      border-radius: 10px;
+      background: #fff;
+      color: var(--accent);
+      font-weight: 700;
+      transition: .25s ease;
+    }
+
+    .cta a:hover { transform: translateY(-3px); }
+
+    section {
+      max-width: 1150px;
+      margin: auto;
+      padding: 80px 20px;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 44px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    h3.section-title {
+      font-family: var(--heading-font);
+      font-size: 2.2rem;
+      margin-bottom: 28px;
+      color: var(--accent);
+    }
+
+    /* ABOUT */
+    .about {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .photo {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #cbd5e1, #e2e8f0);
+    }
+
+    /* SKILLS */
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+    }
+
+    .skill {
+      background: var(--accent-light);
+      padding: 22px;
+      border-radius: 14px;
+      font-weight: 600;
+      color: var(--accent);
+      text-align: center;
+    }
+
+    /* TIMELINE */
+    .timeline {
+      border-left: 4px solid var(--accent);
+      padding-left: 30px;
+    }
+
+    .role { margin-bottom: 34px; }
+
+    .role h4 { font-size: 1.2rem; color: var(--accent); }
+
+    .role span { font-size: .95rem; color: var(--muted); }
+
+    .role ul { margin-top: 10px; padding-left: 18px; }
+
+    /* PROJECTS */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 26px;
+    }
+
+    .project {
+      background: var(--accent-light);
+      padding: 26px;
+      border-radius: 16px;
+    }
+
+    .project h4 { color: var(--accent); margin-bottom: 10px; }
+
+    /* TECH STACK */
+    .tech {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 18px;
+    }
+
+    .tech div {
+      background: var(--card);
+      padding: 18px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 600;
+      box-shadow: var(--shadow);
+    }
+
+    /* CONTACT */
+    .contact a {
+      display: block;
+      margin: 10px 0;
+      font-size: 1.1rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 768px) {
+      .about { grid-template-columns: 1fr; text-align: center; }
+      .photo { margin: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">
+    <div class="logo">SP</div>
+    Smrutiranjan Pradhan
+  </div>
+  <div>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="toggle" onclick="document.body.classList.toggle('dark')">Dark</button>
+</nav>
+
+<header>
+  <h1>Smrutiranjan Pradhan</h1>
+  <h2>Solution Architect | Pega Decisioning Leader</h2>
+  <p>
+    Solution Architect with 14+ years of enterprise IT experience and deep specialization in
+    Pega Decisioning, Customer Decision Hub, and Next-Best-Action platforms. Proven leader in
+    designing scalable, secure, and high-impact decisioning solutions across telecom, banking,
+    airline, and financial services domains.
+  </p>
+  <div class="cta">
+    <a href="#">Download Resume</a>
+    <a href="#contact">Contact</a>
+  </div>
+</header>
+
+<section id="about">
+  <div class="card about">
+    <div class="photo"></div>
+    <div>
+      <h3 class="section-title">Executive Summary</h3>
+      <p>
+        I am a senior Solution Architect and Lead Decision Architect with extensive experience
+        delivering enterprise-scale decisioning and marketing platforms using Pega CDH.
+        I have led architecture design, integration, governance, and large-scale deployments
+        for global clients including Verizon, Bridgecrest, Optus, IAG, Deutsche Bank, VMware,
+        and Dell. My strength lies in aligning business strategy with robust technical
+        architectures that drive measurable customer engagement and operational excellence.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <h3 class="section-title">Core Skills & Expertise</h3>
+  <div class="skills">
+    <div class="skill">Enterprise & Solution Architecture</div>
+    <div class="skill">Pega Decisioning & CDH</div>
+    <div class="skill">Next-Best-Action Design</div>
+    <div class="skill">API & System Integration</div>
+    <div class="skill">Cloud & Pega Cloud</div>
+    <div class="skill">Microservices & Scalability</div>
+    <div class="skill">Architecture Governance</div>
+    <div class="skill">DevOps & Deployment Pipelines</div>
+  </div>
+</section>
+
+<section id="experience">
+  <h3 class="section-title">Professional Experience</h3>
+  <div class="card timeline">
+
+    <div class="role">
+      <h4>PEGA Lead Decision Architect – AgreeYa Solutions (Verizon USA)</h4>
+      <span>Jul 2024 – Present</span>
+      <ul>
+        <li>Leading Next-Best-Action architecture for global B2B customer engagement.</li>
+        <li>Designed decision strategies, offer configuration, and API integrations.</li>
+        <li>Supported production validation and governed CDH code quality.</li>
+      </ul>
+    </div>
+
+    <div class="role">
+      <h4>PEGA Lead Decision Architect – Maantic Global (Bridgecrest USA)</h4>
+      <span>Jan 2023 – Jun 2024</span>
+      <ul>
+        <li>Architected CDH-driven reinstatement campaigns using omni-channel outreach.</li>
+        <li>Designed ingestion pipelines, decision strategies, and deployment automation.</li>
+      </ul>
+    </div>
+
+    <div class="role">
+      <h4>Technical Specialist – Coforge (IAG UK)</h4>
+      <span>Jan 2021 – Nov 2022</span>
+      <ul>
+        <li>Led PEGA Marketing Intelligence implementations for airline customer engagement.</li>
+        <li>Designed HLD/LLD and integrated multiple systems via REST/SOAP APIs.</li>
+      </ul>
+    </div>
+
+    <div class="role">
+      <h4>Technical Specialist – Tech Mahindra (Optus Australia)</h4>
+      <span>Nov 2018 – Dec 2020</span>
+      <ul>
+        <li>Designed and delivered NBA marketing campaigns and platform operations.</li>
+        <li>Built and tuned PEGA 7.2.1 platform for outbound marketing.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section id="projects">
+  <h3 class="section-title">Highlighted Architecture Projects</h3>
+  <div class="projects">
+
+    <div class="project">
+      <h4>Verizon B2B Next-Best-Action Platform</h4>
+      <p>Designed enterprise CDH architecture enabling intelligent, real-time B2B offers across channels.
+         Improved customer targeting accuracy and reduced campaign latency.</p>
+    </div>
+
+    <div class="project">
+      <h4>Bridgecrest Reinstatement Decision Engine</h4>
+      <p>Implemented event-driven decisioning for repossession scenarios, optimizing outreach timing
+         based on customer context and time zone.</p>
+    </div>
+
+    <div class="project">
+      <h4>IAG Airline Campaign Engine</h4>
+      <p>Architected PEGA Marketing Intelligence platform to deliver personalized passenger engagement
+         throughout the travel lifecycle.</p>
+    </div>
+
+    <div class="project">
+      <h4>Optus NBA Marketing Platform</h4>
+      <p>Delivered large-scale outbound marketing and customer intelligence solutions using Pega NBA.</p>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h3 class="section-title">Technical Stack</h3>
+  <div class="tech">
+    <div>Pega CDH 7.x – 24.x</div>
+    <div>Pega Marketing</div>
+    <div>Pega Cloud</div>
+    <div>Java / Python</div>
+    <div>Oracle / Postgres</div>
+    <div>Kafka</div>
+    <div>WebLogic / Tomcat / JBoss</div>
+    <div>Linux / Unix</div>
+  </div>
+</section>
+
+<section id="contact">
+  <h3 class="section-title">Contact</h3>
+  <div class="card contact">
+    <a href="mailto:ranjanp1505@gmail.com">📧 ranjanp1505@gmail.com</a>
+    <a href="tel:+918792411518">📞 +91 8792411518</a>
+    <a href="https://www.linkedin.com/in/smrutiranjan-pradhan-54459948" target="_blank">LinkedIn Profile</a>
+  </div>
+</section>
+
+<footer>
+  © 2025 Smrutiranjan Pradhan · Solution Architect Portfolio
+</footer>
+
+</body>
+</html>
